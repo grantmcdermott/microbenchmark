@@ -33,7 +33,9 @@
 #'     
 #'     # aesthetic tweak example with custom title
 #'     tinytheme("classic")
-#'     tinyplot(tm, fill = "transparent", main = "my timings")
+#'     tinyplot(tm, fill = "transparent",
+#'              main = "Impressive benchmarks",
+#'              sub = "Brought to you by tinyplot")
 #' 
 #'     # we can use the tinyplot scaffolding to add layers to our plot
 #'     tinyplot_add(type = "jitter", pch = ".", alpha = 0.3)
@@ -90,7 +92,7 @@ tinyplot.microbenchmark = function(
     data = x,
     type = type,
     ylab = y_label,
-    main = main,
+    main = main, 
     log = log,
     trim = trim,
     flip = flip,
