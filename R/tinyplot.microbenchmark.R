@@ -36,9 +36,6 @@
 #'     tinyplot(tm, fill = "transparent",
 #'              main = "Impressive benchmarks",
 #'              sub = "Brought to you by tinyplot")
-#' 
-#'     # we can use the tinyplot scaffolding to add layers to our plot
-#'     tinyplot_add(type = "jitter", cex = 0.5, alpha = 0.3)
 #'     
 #'     # reset theme
 #'     tinytheme()
