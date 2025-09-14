@@ -31,7 +31,7 @@
 #'     
 #'     tinyplot(tm)
 #'     
-#'     # aesthetic tweak example with custom title
+#'     # same, but with aesthetic tweaks
 #'     tinytheme("classic")
 #'     tinyplot(tm, fill = "transparent",
 #'              main = "Impressive benchmarks",
