@@ -7,16 +7,16 @@
 \method{tinyplot}{microbenchmark}(
   x,
   type = c("violin", "boxplot", "jitter"),
-  order = NULL,
   log = TRUE,
   unit = NULL,
+  order = NULL,
   main = "microbenchmark timings",
   xlab = NA,
   ylab = NULL,
   ylim = NULL,
   flip = TRUE,
   trim = TRUE,
-  joint.bw = FALSE,
+  joint.bw = c("none", "mean", "full"),
   ...
 )
 }
@@ -26,13 +26,13 @@
 \item{type}{String giving the type of plot representation. One of `"violin"`
 (the default), `"boxplot"`, or `"jitter"`.}
 
+\item{log}{Should times be plotted on a log scale? Default is \code{TRUE}.}
+
+\item{unit}{Unit in which the results be plotted.}
+
 \item{order}{Names of output column(s) to order the results.}
 
-\item{log}{If \code{TRUE} the time axis will be on log scale.}
-
-\item{unit}{The unit to use for graph labels.}
-
-\item{main, xlab, ylab}{Main and axes titles of the plot.}
+\item{main, xlab, ylab}{Plot and axes titles.}
 
 \item{ylim}{Numeric vector of length 2, giving the limits of the timings in 
 the unit automatically chosen for for the time axis. (Note that, in the
@@ -40,11 +40,13 @@ default case where `flip = TRUE`, the timings will appear on the x-axis.)
 If no argument is provided, then will revert to the minimum and maximum
 recorded values.}
 
-\item{flip}{If \code{TRUE} the plot will be flipped on its side (default).}
+\item{flip}{Switch the X and Y axes? Default is \code{TRUE}.}
 
-\item{trim}{If \code{TRUE} the violin plots will be trimmed.}
+\item{trim}{Trim violin plots to data extent? Default is \code{TRUE}.}
 
-\item{joint.bw}{If \code{TRUE} use a joint bandwidth for violin plots.}
+\item{joint.bw}{Which (if any) joint smoothing bandwidth to use on violin
+plots? Default is \code{"none"} to match
+\code{\link[microbenchmark]{autoplot.microbenchmark}}.}
 
 \item{...}{Additional arguments passed to [`tinyplot`].}
 }

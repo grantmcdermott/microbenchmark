@@ -7,18 +7,20 @@
 #' @param x A microbenchmark object.
 #' @param type String giving the type of plot representation. One of `"violin"`
 #'   (the default), `"boxplot"`, or `"jitter"`.
+#' @param unit Unit in which the results be plotted.
+#' @param log Should times be plotted on a log scale? Default is \code{TRUE}.
 #' @param order Names of output column(s) to order the results.
-#' @param log If \code{TRUE} the time axis will be on log scale.
-#' @param unit The unit to use for graph labels.
-#' @param main,xlab,ylab Main and axes titles of the plot.
+#' @param main,xlab,ylab Plot and axes titles.
 #' @param ylim Numeric vector of length 2, giving the limits of the timings in 
 #'   the unit automatically chosen for for the time axis. (Note that, in the
 #'   default case where `flip = TRUE`, the timings will appear on the x-axis.)
 #'   If no argument is provided, then will revert to the minimum and maximum
 #'   recorded values.
-#' @param flip If \code{TRUE} the plot will be flipped on its side (default).
-#' @param trim If \code{TRUE} the violin plots will be trimmed.
-#' @param joint.bw If \code{TRUE} use a joint bandwidth for violin plots.
+#' @param flip Switch the X and Y axes? Default is \code{TRUE}.
+#' @param trim Trim violin plots to data extent? Default is \code{TRUE}.
+#' @param joint.bw Which (if any) joint smoothing bandwidth to use on violin
+#'   plots? Default is \code{"none"} to match
+#'   \code{\link[microbenchmark]{autoplot.microbenchmark}}.
 #' @param ... Additional arguments passed to [`tinyplot`].
 #' @return No return value. Called for side effect of producing a plot.
 #'
@@ -51,21 +53,22 @@
 tinyplot.microbenchmark = function(
    x,
    type = c("violin", "boxplot", "jitter"),
-   order = NULL,
    log = TRUE,
    unit = NULL,
+   order = NULL,
    main = "microbenchmark timings",
    xlab = NA,
    ylab = NULL,
    ylim = NULL,
    flip = TRUE,
    trim = TRUE,
-   joint.bw = FALSE,
+   joint.bw = c("none", "mean", "full"),
    ...
 ) {
 # browser()
 
   type <- match.arg(type)
+  joint.bw <- match.arg(joint.bw)
 
   y_min <- 0
   
@@ -86,11 +89,11 @@ tinyplot.microbenchmark = function(
     nrow(x) / length(levels(x$expr))
   )
 
-  if (log) {
+  if (isTRUE(log)) {
     y_min <- if (min(x$time) == 0) 1 else min(x$ntime)
-    log = "y"
+    log <- "y"
   } else {
-    log = NULL
+    log <- NULL
   }
 
   if (is.null(ylim)) {
