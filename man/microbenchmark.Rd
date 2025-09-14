@@ -109,9 +109,12 @@ print(res)
 ## Plot results:
 boxplot(res)
 
-## Pretty plot:
+## Prettier plots:
 if (requireNamespace("ggplot2")) {
   ggplot2::autoplot(res)
+}
+if (requireNamespace("tinyplot")) {
+  tinyplot::tinyplot(res)
 }
 
 ## Example check usage

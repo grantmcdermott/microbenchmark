@@ -33,7 +33,8 @@
 #'     
 #'     # same, but with aesthetic tweaks
 #'     tinytheme("classic")
-#'     tinyplot(tm, fill = "transparent",
+#'     tinyplot(tm,
+#'              fill = "transparent",
 #'              main = "Impressive benchmarks",
 #'              sub = "Brought to you by tinyplot")
 #'     
