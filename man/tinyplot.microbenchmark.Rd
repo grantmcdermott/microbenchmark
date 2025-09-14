@@ -10,8 +10,10 @@
   order = NULL,
   log = TRUE,
   unit = NULL,
-  ylim = NULL,
   main = "microbenchmark timings",
+  xlab = NA,
+  ylab = NULL,
+  ylim = NULL,
   flip = TRUE,
   trim = TRUE,
   joint.bw = FALSE,
@@ -30,13 +32,13 @@
 
 \item{unit}{The unit to use for graph labels.}
 
+\item{main, xlab, ylab}{Main and axes titles of the plot.}
+
 \item{ylim}{Numeric vector of length 2, giving the limits of the timings in 
 the unit automatically chosen for for the time axis. (Note that, in the
 default case where `flip = TRUE`, the timings will appear on the x-axis.)
 If no argument is provided, then will revert to the minimum and maximum
 recorded values.}
-
-\item{main}{Title of the plot.}
 
 \item{flip}{If \code{TRUE} the plot will be flipped on its side (default).}
 

@@ -10,12 +10,12 @@
 #' @param order Names of output column(s) to order the results.
 #' @param log If \code{TRUE} the time axis will be on log scale.
 #' @param unit The unit to use for graph labels.
+#' @param main,xlab,ylab Main and axes titles of the plot.
 #' @param ylim Numeric vector of length 2, giving the limits of the timings in 
 #'   the unit automatically chosen for for the time axis. (Note that, in the
 #'   default case where `flip = TRUE`, the timings will appear on the x-axis.)
 #'   If no argument is provided, then will revert to the minimum and maximum
 #'   recorded values.
-#' @param main Title of the plot.
 #' @param flip If \code{TRUE} the plot will be flipped on its side (default).
 #' @param trim If \code{TRUE} the violin plots will be trimmed.
 #' @param joint.bw If \code{TRUE} use a joint bandwidth for violin plots.
@@ -54,8 +54,10 @@ tinyplot.microbenchmark = function(
    order = NULL,
    log = TRUE,
    unit = NULL,
-   ylim = NULL,
    main = "microbenchmark timings",
+   xlab = NA,
+   ylab = NULL,
+   ylim = NULL,
    flip = TRUE,
    trim = TRUE,
    joint.bw = FALSE,
@@ -78,9 +80,12 @@ tinyplot.microbenchmark = function(
     x$expr <- factor(x$expr, levels = levels(x$expr)[new_order])
   }
   
-  y_label <- sprintf("Time (%s) for neval = %d",
-                     attr(x$ntime, "unit"),
-                     nrow(x) / length(levels(x$expr)))
+  if (is.null(ylab)) ylab <- sprintf(
+    "Time (%s) for neval = %d",
+    attr(x$ntime, "unit"),
+    nrow(x) / length(levels(x$expr))
+  )
+
   if (log) {
     y_min <- if (min(x$time) == 0) 1 else min(x$ntime)
     log = "y"
@@ -99,8 +104,9 @@ tinyplot.microbenchmark = function(
     ntime ~ expr,
     data = x,
     type = type,
-    ylab = y_label,
     main = main, 
+    ylab = ylab,
+    xlab = xlab,
     log = log,
     trim = trim,
     flip = flip,
