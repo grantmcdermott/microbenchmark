@@ -59,7 +59,7 @@ if (requireNamespace("tinyplot", quietly = TRUE)) {
                          rchisq(100, 1),
                          rchisq(100, 2),
                          rchisq(100, 3),
-                         rchisq(100, 5), times=1000L)
+                         times=1000L)
     
     tinyplot(tm)
     
@@ -70,7 +70,7 @@ if (requireNamespace("tinyplot", quietly = TRUE)) {
              sub = "Brought to you by tinyplot")
 
     # we can use the tinyplot scaffolding to add layers to our plot
-    tinyplot_add(type = "jitter", pch = ".", alpha = 0.3)
+    tinyplot_add(type = "jitter", cex = 0.5, alpha = 0.3)
     
     # reset theme
     tinytheme()
