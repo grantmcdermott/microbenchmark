@@ -11,11 +11,6 @@
 #' @param log Should times be plotted on a log scale? Default is \code{TRUE}.
 #' @param order Names of output column(s) to order the results.
 #' @param main,xlab,ylab Plot and axes titles.
-#' @param ylim Numeric vector of length 2, giving the limits of the timings in 
-#'   the unit automatically chosen for for the time axis. (Note that, in the
-#'   default case where `flip = TRUE`, the timings will appear on the x-axis.)
-#'   If no argument is provided, then will revert to the minimum and maximum
-#'   recorded values.
 #' @param flip Switch the X and Y axes? Default is \code{TRUE}.
 #' @param trim Trim violin plots to data extent? Default is \code{TRUE}.
 #' @param joint.bw Which (if any) joint smoothing bandwidth to use on violin
@@ -59,7 +54,6 @@ tinyplot.microbenchmark = function(
    main = "microbenchmark timings",
    xlab = NA,
    ylab = NULL,
-   ylim = NULL,
    flip = TRUE,
    trim = TRUE,
    joint.bw = c("none", "mean", "full"),
@@ -69,12 +63,9 @@ tinyplot.microbenchmark = function(
 
   type <- match.arg(type)
   joint.bw <- match.arg(joint.bw)
-
-  y_min <- 0
   
   unit <- determine_unit(x, unit)
   x$ntime <- convert_to_unit(x, unit)
-  y_max <- max(x$ntime)
   if (!is.null(order)) {
     s <- summary(x)
     x_colnames <- colnames(s)
@@ -95,13 +86,6 @@ tinyplot.microbenchmark = function(
   } else {
     log <- NULL
   }
-
-  if (is.null(ylim)) {
-    ylim = c(y_min, y_max)
-  } else if (length(ylim) != 2 || !is.numeric(ylim)) {
-    warning("`ylim` must be a numeric vector of length 2; reverting to defaults.")
-    ylim = c(y_min, y_max)
-  }
   
   tinyplot::tinyplot(
     ntime ~ expr,
@@ -114,7 +98,6 @@ tinyplot.microbenchmark = function(
     trim = trim,
     flip = flip,
     joint.bw = joint.bw,
-    ylim = ylim,
     ...
   )
   
