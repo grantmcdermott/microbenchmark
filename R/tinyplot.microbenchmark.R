@@ -10,8 +10,11 @@
 #' @param order Names of output column(s) to order the results.
 #' @param log If \code{TRUE} the time axis will be on log scale.
 #' @param unit The unit to use for graph labels.
-#' @param y_max The upper limit of the y axis, in the unit automatically
-#'   chosen for the time axis (defaults to the maximum value).
+#' @param ylim Numeric vector of length 2, giving the limits of the timings in 
+#'   the unit automatically chosen for for the time axis. (Note that, in the
+#'   default case where `flip = TRUE`, the timings will appear on the x-axis.)
+#'   If no argument is provided, then will revert to the minimum and maximum
+#'   recorded values.
 #' @param main Title of the plot.
 #' @param flip If \code{TRUE} the plot will be flipped on its side (default).
 #' @param trim If \code{TRUE} the violin plots will be trimmed.
@@ -51,7 +54,7 @@ tinyplot.microbenchmark = function(
    order = NULL,
    log = TRUE,
    unit = NULL,
-   y_max = NULL,
+   ylim = NULL,
    main = "microbenchmark timings",
    flip = TRUE,
    trim = TRUE,
@@ -66,9 +69,7 @@ tinyplot.microbenchmark = function(
   
   unit <- determine_unit(x, unit)
   x$ntime <- convert_to_unit(x, unit)
-  if (is.null(y_max)) {
-    y_max <- max(x$ntime)
-  }
+  y_max <- max(x$ntime)
   if (!is.null(order)) {
     s <- summary(x)
     x_colnames <- colnames(s)
@@ -86,6 +87,13 @@ tinyplot.microbenchmark = function(
   } else {
     log = NULL
   }
+
+  if (is.null(ylim)) {
+    ylim = c(y_min, y_max)
+  } else if (length(ylim) != 2 || !is.numeric(ylim)) {
+    warning("`ylim` must be a numeric vector of length 2; reverting to defaults.")
+    ylim = c(y_min, y_max)
+  }
   
   tinyplot::tinyplot(
     ntime ~ expr,
@@ -97,7 +105,7 @@ tinyplot.microbenchmark = function(
     trim = trim,
     flip = flip,
     joint.bw = joint.bw,
-    ylim = c(y_min, y_max),
+    ylim = ylim,
     ...
   )
   

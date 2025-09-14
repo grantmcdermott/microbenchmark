@@ -10,7 +10,7 @@
   order = NULL,
   log = TRUE,
   unit = NULL,
-  y_max = NULL,
+  ylim = NULL,
   main = "microbenchmark timings",
   flip = TRUE,
   trim = TRUE,
@@ -30,8 +30,11 @@
 
 \item{unit}{The unit to use for graph labels.}
 
-\item{y_max}{The upper limit of the y axis, in the unit automatically
-chosen for the time axis (defaults to the maximum value).}
+\item{ylim}{Numeric vector of length 2, giving the limits of the timings in 
+the unit automatically chosen for for the time axis. (Note that, in the
+default case where `flip = TRUE`, the timings will appear on the x-axis.)
+If no argument is provided, then will revert to the minimum and maximum
+recorded values.}
 
 \item{main}{Title of the plot.}
 
