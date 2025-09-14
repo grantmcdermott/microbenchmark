@@ -20,7 +20,7 @@
 #' @param trim If \code{TRUE} the violin plots will be trimmed.
 #' @param joint.bw If \code{TRUE} use a joint bandwidth for violin plots.
 #' @param ... Additional arguments passed to [`tinyplot`].
-#' @return None. Called for side effect of producing a plot.
+#' @return No return value. Called for side effect of producing a plot.
 #'
 #' @examples
 #' if (requireNamespace("tinyplot", quietly = TRUE)) {

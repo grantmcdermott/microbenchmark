@@ -47,7 +47,7 @@ recorded values.}
 \item{...}{Additional arguments passed to [`tinyplot`].}
 }
 \value{
-None. Called for side effect of producing a plot.
+No return value. Called for side effect of producing a plot.
 }
 \description{
 Uses the `tinyplot` package to produce prettier base graphics
