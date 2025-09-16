@@ -109,13 +109,11 @@ print(res)
 ## Plot results:
 boxplot(res)
 
-## Prettier plots:
+## Pretty plot:
 if (requireNamespace("ggplot2")) {
   ggplot2::autoplot(res)
 }
-if (requireNamespace("tinyplot")) {
-  tinyplot::tinyplot(res)
-}
+# See also ?tinyplot.microbenchmark
 
 ## Example check usage
 my_check <- function(values) {
