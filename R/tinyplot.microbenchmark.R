@@ -37,6 +37,9 @@
 #'              fill = "transparent",
 #'              main = "Impressive benchmarks",
 #'              sub = "Brought to you by tinyplot")
+#' 
+#'     # we can use the tinyplot scaffolding to add layer to our plot
+#'      tinyplot_add(type = "jitter", cex = 0.5, alpha = 0.3)
 #'     
 #'     # reset theme
 #'     tinytheme()
@@ -57,7 +60,8 @@ tinyplot.microbenchmark = function(
    joint.bw = c("none", "mean", "full"),
    ...
 ) {
-# browser()
+
+  dots <- list(...)
 
   type <- match.arg(type)
   joint.bw <- match.arg(joint.bw)
@@ -79,24 +83,38 @@ tinyplot.microbenchmark = function(
   )
 
   if (isTRUE(log)) {
-    y_min <- if (min(x$time) == 0) 1 else min(x$ntime)
     log <- "y"
   } else {
     log <- NULL
   }
+
+  if (is.null(dots$ylim)) {
+    if (log == "y") {
+      y_min <- if (min(x$time) == 0) 1 else min(x$ntime)
+    } else {
+      y_min <- 0
+    }
+    y_max <- max(x$ntime)
+    dots$ylim <- c(y_min, y_max)
+  }
   
-  tinyplot::tinyplot(
-    ntime ~ expr,
-    data = x,
-    type = type,
-    main = main, 
-    ylab = ylab,
-    xlab = xlab,
-    log = log,
-    trim = trim,
-    flip = flip,
-    joint.bw = joint.bw,
-    ...
+  do.call(
+    tinyplot::tinyplot,
+    utils::modifyList(
+      list(
+        x = ntime ~ expr,
+        data = x,
+        type = type,
+        main = main, 
+        ylab = ylab,
+        xlab = xlab,
+        log = log,
+        trim = trim,
+        flip = flip,
+        joint.bw = joint.bw
+      ),
+      dots
+    )
   )
   
 }
