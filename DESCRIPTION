@@ -13,7 +13,7 @@ BugReports: https://github.com/joshuaulrich/microbenchmark/issues/
 License: BSD_2_clause + file LICENSE
 Depends: R (>= 3.2.0)
 Imports: graphics, stats
-Suggests: ggplot2, multcomp, RUnit, tinyplot (>= 0.4.2)
+Suggests: ggplot2, multcomp, RUnit, tinyplot (> 0.4.2)
 SystemRequirements: On a Unix-alike, one of the C functions mach_absolute_time (macOS), clock_gettime or gethrtime. If none of these is found, the obsolescent POSIX function gettimeofday will be tried.
 ByteCompile: yes
 Version: 1.5.0.99
