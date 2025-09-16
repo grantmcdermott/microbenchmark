@@ -59,7 +59,7 @@ if (requireNamespace("tinyplot", quietly = TRUE)) {
                          rchisq(100, 1),
                          rchisq(100, 2),
                          rchisq(100, 3),
-                         times=1000L)
+                         times=100L)
     
     tinyplot(tm)
     
