@@ -61,17 +61,18 @@ if (requireNamespace("tinyplot", quietly = TRUE)) {
                          rchisq(100, 3),
                          times=100L)
     
+    # default plot
     tinyplot(tm)
     
     # same, but with aesthetic tweaks
     tinyplot(tm,
              fill  = "transparent",
+             theme = "classic",
              main  = "Impressive benchmarks",
-             sub   = "Brought to you by tinyplot",
-             theme = "classic")
+             sub   = "Brought to you by tinyplot")
 
     # we can use the tinyplot scaffolding to add layer to our plot
-     tinyplot_add(type = "jitter", cex = 0.5, alpha = 0.3)
+    tinyplot_add(type = "jitter", cex = 0.5, alpha = 0.3)
 }
 }
 \author{
