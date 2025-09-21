@@ -4,7 +4,7 @@
 \alias{tinyplot.microbenchmark}
 \title{Tinyplot method for microbenchmark objects}
 \usage{
-\method{tinyplot}{microbenchmark}(
+tinyplot.microbenchmark(
   x,
   type = c("violin", "boxplot", "jitter"),
   log = TRUE,
@@ -64,17 +64,14 @@ if (requireNamespace("tinyplot", quietly = TRUE)) {
     tinyplot(tm)
     
     # same, but with aesthetic tweaks
-    tinytheme("classic")
     tinyplot(tm,
-             fill = "transparent",
-             main = "Impressive benchmarks",
-             sub = "Brought to you by tinyplot")
+             fill  = "transparent",
+             main  = "Impressive benchmarks",
+             sub   = "Brought to you by tinyplot",
+             theme = "classic")
 
     # we can use the tinyplot scaffolding to add layer to our plot
      tinyplot_add(type = "jitter", cex = 0.5, alpha = 0.3)
-    
-    # reset theme
-    tinytheme()
 }
 }
 \author{
