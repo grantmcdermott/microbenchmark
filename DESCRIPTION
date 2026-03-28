@@ -6,6 +6,7 @@ Authors@R: c(person("Olaf", "Mersmann", role=c("aut")),
         person("Claudia", "Beleites", role=c("ctb")),
         person("Rainer", "Hurling", role=c("ctb")),
         person("Ari", "Friedman", role=c("ctb")),
+        person("Grant", "McDermott", role=c("ctb")),
         person(given=c("Joshua","M."), family="Ulrich", role="cre",
                email="josh.m.ulrich@gmail.com"))
 URL: https://github.com/joshuaulrich/microbenchmark/

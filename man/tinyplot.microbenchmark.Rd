@@ -71,7 +71,7 @@ if (requireNamespace("tinyplot", quietly = TRUE)) {
              main  = "Impressive benchmarks",
              sub   = "Brought to you by tinyplot")
 
-    # we can use the tinyplot scaffolding to add layer to our plot
+    # we can use tinyplot scaffolding to add layers to our plot
     tinyplot_add(type = "jitter", cex = 0.5, alpha = 0.3)
 }
 }
